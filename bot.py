@@ -21,7 +21,7 @@ bot = commands.Bot(command_prefix=config.read('command-prefix'))
 
 @bot.event
 async def on_ready():
-    print(colored("Kiask-Bot has successfully started up"), 'green')
+    print(colored("Kiask-Bot has successfully started up", 'green'))
     config.initialize()
     for cog in cogs:
         bot.load_extension(cog)

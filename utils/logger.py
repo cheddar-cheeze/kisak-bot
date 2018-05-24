@@ -9,7 +9,7 @@ else:
     directory = '/'
 
 path = os.getcwd()
-log_path = path + directory + 'channel_logs' + directory
+log_path = path + directory + 'logs' + directory
 
 class logger():
     def __init__(self, bot):
@@ -23,9 +23,12 @@ class logger():
             os.makedirs(log_path)
         if not os.path.exists(log_path + message.server.name):
             os.makedirs(log_path + message.server.name)
-        channel_path = log_path + message.server.name + directory + message.channel.name
-        log = open(channel_path + ".txt", "a+")
-        log.write(str(message.timestamp) + "|Message author:" + str(message.author) + "|" + message.content + '\n')
+        channel_path = log_path + message.server.name + directory + 'channel_logs'
+        if not os.path.exists(channel_path):
+            os.makedirs(channel_path)
+        channel = channel_path + directory + message.channel.name
+        log = open(channel + ".txt", "a+")
+        log.write(str(message.timestamp) + "" + str(message.author) + ":" + message.content + '\n')
         log.close()
 
 def setup(bot):

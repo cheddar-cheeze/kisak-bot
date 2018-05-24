@@ -4,6 +4,18 @@ from discord.ext import commands
 from termcolor import colored
 import colorama
 from utils import config
+import platform
+import sqlite3
+import os
+
+if platform.system() == 'Windows':
+    directory = '\\'
+else:
+    directory = '/'
+
+path = os.getcwd()
+db_path = path + directory + "bot.db"
+db = sqlite3.connect(db_path)
 
 class mod():
     def __init__(self, bot):
@@ -15,6 +27,7 @@ class mod():
         reason = ' '.join(reason)
         if reason == "":
             reason = "None was specified"
+        g_user: discord.User = user
         await self.bot.send_typing(ctx.message.channel)
         embed = discord.Embed(title=user.name + " was kicked!", description="", color=0xffbc77)
         embed.add_field(name="User id", value=user.id, inline=True)
@@ -26,8 +39,8 @@ class mod():
         odm = discord.Embed(title="A member was kicked from your server", description="", color=0xffbc77)
         odm.add_field(name="Server Name", value=ctx.message.server.name)
         odm.add_field(name="Server id", value=ctx.message.server.id, inline=True)
-        odm.add_field(name="Member name", value=user.name)
-        odm.add_field(name="Member id", value=user.id, inline=True)
+        odm.add_field(name="User name", value=user.name)
+        odm.add_field(name="User id", value=user.id, inline=True)
         odm.add_field(name="Who kicked them", value=ctx.message.author)
         odm.add_field(name="Reason", value=reason, inline=True)
         odm.set_thumbnail(url=user.avatar_url)
@@ -37,10 +50,8 @@ class mod():
         dm.add_field(name="Server name", value=ctx.message.server.name)
         dm.add_field(name="Server id", value=ctx.message.server.id, inline=True)
         dm.add_field(name="Reason", value=reason)
-        print(colored(user + " was kicked by " + ctx.message.author + "\n Reason:" + reason, 'red'))
-        await self.bot.send_message(user, embed=dm)
+        await self.bot.send_message(g_user, embed=dm)
         await self.bot.kick(user)
-
 
     @commands.command(pass_context=True, no_pm=True)
     @commands.has_permissions(ban_members=True)
@@ -48,6 +59,7 @@ class mod():
         reason = ' '.join(reason)
         if reason == "":
             reason = "None was specified"
+        g_user: discord.User = user
         await self.bot.send_typing(ctx.message.channel)
         embed = discord.Embed(title=user.name + ",was banned!", description="", color=0xffbc77)
         embed.add_field(name="User id", value=user.id, inline=True)
@@ -59,8 +71,8 @@ class mod():
         odm = discord.Embed(title="A member was banned from your server", description="", color=0xffbc77)
         odm.add_field(name="Server Name", value=ctx.message.server.name)
         odm.add_field(name="Server id", value=ctx.message.server.id, inline=True)
-        odm.add_field(name="Member name", value=user.name)
-        odm.add_field(name="Member id", value=user.id, inline=True)
+        odm.add_field(name="User name", value=user.name)
+        odm.add_field(name="User id", value=user.id, inline=True)
         odm.add_field(name="Who banned them", value=ctx.message.author)
         odm.add_field(name="Reason", value=reason, inline=True)
         odm.set_thumbnail(url=user.avatar_url)
@@ -70,8 +82,7 @@ class mod():
         dm.add_field(name="Server id", value=ctx.message.server.id, inline=True)
         dm.add_field(name="Reason", value=reason)
         dm.set_thumbnail(url=ctx.message.server.icon_url)
-        print(colored(user + " was banned by " + ctx.message.author + "\n Reason:" + reason, 'red'))
-        await self.bot.send_message(user, embed=dm)
+        await self.bot.send_message(g_user, embed=dm)
         await self.bot.ban(user)
 
 

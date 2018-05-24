@@ -9,6 +9,18 @@ class misc():
     def __init__(self, bot):
         self.bot = bot
 
+    async def on_member_join(self, member):
+        embed = discord.Embed(title="Member joined!", description="Welcome " + member.mention + ", please read the rules" , color=0xffbc77)
+        embed.set_thumbnail(url=member.avatar_url)
+        channel = discord.Object(id='429444395721293827')
+        await self.bot.send_message(channel, embed=embed)
+
+    async def on_member_remove(self, member):
+        embed = discord.Embed(title="Member RQ!!", description=member.mention + " RQ!!", color=0xffbc77)
+        embed.set_thumbnail(url=member.avatar_url)
+        channel = discord.Object(id='429444395721293827')
+        await self.bot.send_message(channel, embed=embed)
+
     @commands.command(pass_context=True, no_pm=True)
     async def info(self, ctx, user: discord.Member=None):
         if user is None:
@@ -45,24 +57,6 @@ class misc():
         embed.add_field(name="Default channel", value=ctx.message.author.server.default_channel, inline=True)
         await self.bot.say(embed=embed)
 
-    @commands.command(pass_context=True, no_pm=True)
-    async def game(self, ctx, *state):
-        await self.bot.send_typing(ctx.message.channel)
-        state = ' '.join(state)
-        game = discord.Game(name=state)
-        if ctx.message.author.id == config.read('owner-id'):
-            if state == '':
-                await self.bot.change_presence(game=None)
-                embed = discord.Embed(title="Game status", description="Kisak's game has been set to ``None``")
-                await self.bot.say(embed=embed)
-            else:
-                await self.bot.change_presence(game=game)
-                embed = discord.Embed(title="Game status", description="Kisak's game status has been set to ``" + game.name + "``", color=0xffbc77)
-                await self.bot.say(embed=embed)
-        else:
-            await self.bot.send_typing(ctx.message.channel)
-            embed = discord.Embed(title="Command failed", description="This command may only be executed by the bot owner", color=0xffbc77)
-            await self.bot.say(embed=embed)
 
     @commands.command(pass_context=True, no_pm=True)
     async def unacceptable(self, ctx):

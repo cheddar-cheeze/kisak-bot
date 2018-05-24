@@ -9,7 +9,7 @@ git pull origin master
 echp "${txtgreen}Git repository is up to date"
 sleep 1
 echo "${txtyellow}Checking pip for updates${txtcyan}"
-pip3 install -r requirements.txt
+python3.6 -m pip install -r requirements.txt
 echo "${txtgreen}Python packages are up to date"
 sleep 1
 echo "${txtpurple}Kiask-Bot is starting up${txtrst}"

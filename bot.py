@@ -1,4 +1,4 @@
-from util import config
+from utils import config
 import discord
 import asyncio
 from discord.ext import commands
@@ -14,43 +14,46 @@ else:
 
 token = config.read('token')
 cogs = ['cogs.mod',
-        'cogs.misc'
+        'cogs.misc',
+        'utils.logger'
         ]
 
 bot = commands.Bot(command_prefix=config.read('command-prefix'))
 
 @bot.event
 async def on_ready():
-    print(colored("Kiask-Bot has successfully started up", 'green'))
+    print(colored("Kiask-Bot has successfully started", 'green'))
     config.initialize()
     for cog in cogs:
         bot.load_extension(cog)
-        game = discord.Game(name="moderating valve repositories")
-        await bot.change_presence(game=game)
+    game = discord.Game(name="moderating valve repositories")
+    await bot.change_presence(game=game)
+
 
 @bot.command(pass_context=True, no_pm=True)
-@commands.has_role("جبنة الشيدر")
-async def reload(ctx, cog=''):
-    bot.unload_extension('cogs.' + cog)
-    bot.load_extension('cogs.' + cog)
-    print(colored(ctx.message.author.name + "#" + ctx.message.author.discriminator + " reloaded a cog", 'yellow'))
-    embed = discord.Embed(title="", description="The ``" + cog + "`` cog has been reloaded", color=0xffbc77)
-    await bot.say(embed=embed)
-
-@bot.command(pass_context=True, no_pm=True)
-@commands.has_role("جبنة الشيدر")
 async def unload(ctx, cog=''):
-    bot.unload_extension('cogs.' + cog)
-    print(colored(ctx.message.author.id + "#" + ctx.message.author.discriminator + " unloaded a cog", 'yellow'))
-    embed = discord.Embed(title="Cog-unloaded", description="The ``" + cog + "`` cog has been unloaded", color=0xffbc77)
-    await bot.say(embed=embed)
+    if ctx.message.author.id == config.read('owner-id'):
+        await bot.send_typing(ctx.message.channel)
+        bot.unload_extension(cog)
+        embed = discord.Embed(title="Cog-unloaded", description="``" + cog + "`` has been unloaded", color=0xffbc77)
+        await bot.say(embed=embed)
+    else:
+        await bot.send_typing(ctx.message.channel)
+        embed = discord.Embed(title="Command failed", description="This command may only be executed by the bot owner", color=0xffbc77)
+        await bot.say(embed=embed)
+
 
 @bot.command(pass_context=True, no_pm=True)
-@commands.has_role("جبنة الشيدر")
 async def load(ctx, cog=''):
-    bot.unload_extension('.cogs' + cog)
-    print(colored(ctx.message.author.id + "#" + ctx.message.author.discriminator + " loaded a cog", 'yellow'))
-    embed = discord.Embed(title="Cog-loaded", description="The ``" + cog + "`` cog has been loaded", color=0xffbc77)
-    await bot.say(embed=embed)
+    if ctx.message.author.id == config.read('owner-id'):
+        await bot.send_typing(ctx.message.channel)
+        bot.unload_extension(cog)
+        embed = discord.Embed(title="Cog-loaded", description="``" + cog + "`` has been loaded", color=0xffbc77)
+        await bot.say(embed=embed)
+    else:
+        await bot.send_typing(ctx.message.channel)
+        embed = discord.Embed(title="Command failed", description="This command may only be executed by the bot owner", color=0xffbc77)
+        await bot.say(embed=embed)
+
 
 bot.run(token)

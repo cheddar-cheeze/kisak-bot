@@ -28,7 +28,7 @@ class logger():
             os.makedirs(channel_path)
         channel = channel_path + directory + message.channel.name
         log = open(channel + ".txt", "a+")
-        log.write(str(message.timestamp) + "" + str(message.author) + ":" + message.content + '\n')
+        log.write(str(message.timestamp) + "  " + str(message.author) + ":" + message.content + '\n')
         log.close()
 
 def setup(bot):

@@ -1,10 +1,13 @@
 import discord
 from discord.ext import commands
 from utils import config
+import sys
 
 class owner():
     def __init__(self, bot):
         self.bot = bot
+
+    __file__ = 'bot.py'
 
     @commands.command(pass_context=True, no_pm=True)
     async def game(self, ctx, *state):
@@ -63,6 +66,33 @@ class owner():
             embed = discord.Embed(title="Command failed", description="This command may only be executed by the bot owner", color=0xffbc77)
             await self.bot.say(embed=embed)
 
+    @commands.command(pass_context=True, no_pm=True)
+    async def restart(self, ctx):
+        if ctx.message.author.id == config.read('owner-id'):
+            await self.bot.send_typing(ctx.message.channel)
+            embed = discord.Embed(title="Restarting...", description="I am restarting!", color=0xffbc77)
+            await self.bot.say(embed=embed)
+            self.bot.logout()
+            await sys.exit(6)
+            os.execv(__file__, sys.argv)
+        else:
+            await self.bot.send_typing(ctx.message.channel)
+            embed = discord.Embed(title="Command failed", description="This command may only be executed by the bot owner", color=0xffbc77)
+            await self.bot.say(embed=embed)
+
+    @commands.command(pass_context=True, no_pm=True)
+    async def shutdown(self, ctx):
+        if ctx.message.author.id == config.read('owner-id'):
+            await self.bot.send_typing(ctx.message.channel)
+            embed = discord.Embed(title="Shutting-down...", description="I am shutting-down!", color=0xffbc77)
+            await self.bot.say(embed=embed)
+            self.bot.logout()
+            await sys.exit(0)
+            os.execv(__file__, sys.argv)
+        else:
+            await self.bot.send_typing(ctx.message.channel)
+            embed = discord.Embed(title="Command failed", description="This command may only be executed by the bot owner", color=0xffbc77)
+            await self.bot.say(embed=embed)
 
 def setup(bot):
         bot.add_cog(owner(bot))

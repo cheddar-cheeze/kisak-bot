@@ -6,6 +6,7 @@ from discord.ext.commands import Bot
 from termcolor import colored
 import os
 import platform
+import sys
 
 if platform.system() == 'Windows':
     os.system('cls')
@@ -31,4 +32,5 @@ async def on_ready():
     await bot.change_presence(game=game)
 
 
-bot.run(token)
+if __name__ == '__main__':
+    bot.run(token)

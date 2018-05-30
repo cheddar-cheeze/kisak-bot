@@ -7,6 +7,7 @@ from termcolor import colored
 import os
 import platform
 import sys
+from utils import database
 
 if platform.system() == 'Windows':
     os.system('cls')
@@ -17,7 +18,8 @@ token = config.read('token')
 cogs = ['cogs.mod',
         'cogs.misc',
         'utils.logger',
-        'cogs.owner'
+        'cogs.owner',
+        'cogs.rep'
         ]
 
 bot = commands.Bot(command_prefix=config.read('command-prefix'))
@@ -30,6 +32,7 @@ async def on_ready():
         bot.load_extension(cog)
     game = discord.Game(name="moderating valve repositories")
     await bot.change_presence(game=game)
+    database.initialize()
 
 
 if __name__ == '__main__':

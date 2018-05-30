@@ -33,13 +33,12 @@ class owner():
         if ctx.message.author.id == config.read('owner-id'):
             await self.bot.send_typing(ctx.message.channel)
             self.bot.unload_extension(cog)
-            self.bot.load_exetension(cog)
+            self.bot.load_extension(cog)
             embed = discord.Embed(title="Cog-unloaded", description="``" + cog + "`` has been reloaded", color=0xffbc77)
             await self.bot.say(embed=embed)
         else:
             await self.bot.send_typing(ctx.message.channel)
-            embed = discord.Embed(title="Command failed",
-                                  description="This command may only be executed by the bot owner", color=0xffbc77)
+            embed = discord.Embed(title="Command failed", description="This command may only be executed by the bot owner", color=0xffbc77)
             await self.bot.say(embed=embed)
 
     @commands.command(pass_context=True, no_pm=True)

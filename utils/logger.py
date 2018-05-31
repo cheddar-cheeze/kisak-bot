@@ -21,6 +21,11 @@ class logger():
     async def on_message(self, message):
         if message.author == self.bot.user:
             return
+        if message.author.id == '317042661070733314':
+            try:
+                await self.bot.say('Marc is a weeb')
+            except:
+                pass
         if not os.path.exists(log_path):
             os.makedirs(log_path)
         if not os.path.exists(log_path + directory + message.server.name):
@@ -35,5 +40,6 @@ class logger():
             log.close()
         except:
             pass
+
 def setup(bot):
     bot.add_cog(logger(bot))

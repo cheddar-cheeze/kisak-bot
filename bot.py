@@ -29,7 +29,10 @@ async def on_ready():
     print(colored("Kiask-Bot has successfully started", 'green'))
     config.initialize()
     for cog in cogs:
-        bot.load_extension(cog)
+        try:
+            bot.load_extension(cog)
+        except:
+            pass
     game = discord.Game(name="moderating valve repositories")
     await bot.change_presence(game=game)
     database.initialize()

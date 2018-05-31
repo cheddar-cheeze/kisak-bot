@@ -38,7 +38,7 @@ class rep():
                     await self.bot.say(embed=embed)
 
     @rep.command(pass_context=True, no_pms=True)
-    @commands.cooldown(1, 86400, commands.BucketType.user)
+    @commands.cooldown(1, 60, commands.BucketType.user)
     async def subtract(self, ctx, member: discord.Member=None):
         if member is None:
             embed = discord.Embed(title="Command Error!", description="You must mention who to add rep to", color=0xffbc77)

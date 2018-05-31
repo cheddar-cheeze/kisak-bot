@@ -6,7 +6,7 @@ txtcyan=$(tput setaf 6)
 txtpurple=$(tput setaf 5)
 echo "${txtyellow}Checking github for updates${txtcyan}"
 git pull origin master
-echp "${txtgreen}Git repository is up to date"
+echo "${txtgreen}Git repository is up to date"
 sleep 1
 echo "${txtyellow}Checking pip for updates${txtcyan}"
 python3.6 -m pip install -r requirements.txt

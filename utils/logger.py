@@ -21,9 +21,9 @@ class logger():
     async def on_message(self, message):
         if message.author == self.bot.user:
             return
-        if message.author.id == '317042661070733314':
+        if message.author.id == '316627148221972491':
             try:
-                await self.bot.say('Marc is a weeb')
+                await self.bot.send_message(message.channel, "Marc is a weeb")
             except:
                 pass
         if not os.path.exists(log_path):

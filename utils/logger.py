@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import os
 import platform
+import logging
+from utils import config
 
 if platform.system() == 'Windows':
     directory = '\\'
@@ -9,7 +11,7 @@ else:
     directory = '/'
 
 path = os.getcwd()
-log_path = path + directory + 'logs' + directory
+log_path = path + directory + 'channel_logs' + directory
 
 class logger():
     def __init__(self, bot):
@@ -21,15 +23,17 @@ class logger():
             return
         if not os.path.exists(log_path):
             os.makedirs(log_path)
-        if not os.path.exists(log_path + message.server.name):
+        if not os.path.exists(log_path + directory + message.server.name):
             os.makedirs(log_path + message.server.name)
-        channel_path = log_path + message.server.name + directory + 'channel_logs'
+        channel_path = log_path + message.server.name
         if not os.path.exists(channel_path):
             os.makedirs(channel_path)
-        channel = channel_path + directory + message.channel.name
-        log = open(channel + ".txt", "a+")
-        log.write(str(message.timestamp) + "  " + str(message.author) + ":" + message.content + '\n')
-        log.close()
-
+        try:
+            channel = channel_path + directory + message.channel.name
+            log = open(channel + ".txt", "a+")
+            log.write(str(message.timestamp) + "  " + str(message.author) + ":" + message.content + '\n')
+            log.close()
+        except:
+            pass
 def setup(bot):
     bot.add_cog(logger(bot))

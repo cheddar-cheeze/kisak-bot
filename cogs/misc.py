@@ -13,8 +13,7 @@ class misc():
     async def on_member_join(self, member):
         embed = discord.Embed(title="Member joined!", description="Welcome " + member.mention + ", please read the rules" , color=0xffbc77)
         embed.set_thumbnail(url=member.avatar_url)
-        channel = discord.Object(id='429444395721293827')
-        await self.bot.send_message(channel, embed=embed)
+        await self.bot.send_message(member.channel, embed=embed)
 
     async def on_member_remove(self, member):
         embed = discord.Embed(title="Member RQ!!", description=member.mention + " RQ!!", color=0xffbc77)

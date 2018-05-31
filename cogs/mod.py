@@ -102,7 +102,26 @@ class mod():
                 await self.bot.say(embed=embed)
                 break
 
-
+    @commands.command(pass_context=True, no_pm=True)
+    async def masspm(self, ctx, *message):
+        if ctx.message.author == ctx.message.server.owner:
+            message = ' '.join(message)
+            if message == "":
+                embed = discord.Embed(title="Command Error!", description="You must provide a message to send", color=0xffbc77)
+                await self.bot.say(embed=embed)
+            else:
+                for user in ctx.message.server.members:
+                    try:
+                        embed = discord.Embed(title="Mass pm from " + ctx.message.author.name + "#" + ctx.message.author.discriminator, description=message, color=0xffbc77)
+                        embed.set_thumbnail(url=ctx.message.author.avatar_url)
+                        await self.bot.send_message(user, embed=embed)
+                    except:
+                        pass
+                embed = discord.Embed(title="Completed masspm!", color=0xffbc77)
+                await self.bot.say(embed=embed)
+        else:
+            embed = discord.Embed(title="Command Error!", description=ctx.message.author.mention + "you do not have the correct permissions to use this command", color=0xffbc77)
+            await self.bot.say(embed=embed)
 
 def setup(bot):
     bot.add_cog(mod(bot))

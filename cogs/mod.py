@@ -49,10 +49,7 @@ class mod():
                     except:
                         pass
                     await self.bot.kick(user)
-            else:
-                embed = discord.Embed(title="Command Error!", description=ctx.message.author.mention + ",you do not have the correct permissions to use this command", color=0xffbc77)
-                await self.bot.say(embed=embed)
-                break
+
 
 
     @commands.command(pass_context=True, no_pm=True)
@@ -97,13 +94,10 @@ class mod():
                     except:
                         pass
                     await self.bot.ban(user)
-            else:
-                embed = discord.Embed(title="Command Error!", description=ctx.message.author.mention + ",you do not have the correct permissions to use this command", color=0xffbc77)
-                await self.bot.say(embed=embed)
-                break
 
     @commands.command(pass_context=True, no_pm=True)
     async def masspm(self, ctx, *message):
+        ctx.mesage.delete()
         if ctx.message.author == ctx.message.server.owner:
             message = ' '.join(message)
             if message == "":
@@ -120,7 +114,7 @@ class mod():
                 embed = discord.Embed(title="Completed masspm!", color=0xffbc77)
                 await self.bot.say(embed=embed)
         else:
-            embed = discord.Embed(title="Command Error!", description=ctx.message.author.mention + "you do not have the correct permissions to use this command", color=0xffbc77)
+            embed = discord.Embed(title="Command Error!", description=ctx.message.author.mention + ",you do not have the correct permissions to use this command", color=0xffbc77)
             await self.bot.say(embed=embed)
 
 def setup(bot):

@@ -33,10 +33,8 @@ async def on_ready():
             bot.load_extension(cog)
         except:
             pass
-    game = discord.Game(name="moderating valve repositories")
-    await bot.change_presence(game=game)
+    await bot.change_presence(game=discord.Game(name='moderating valve repositories'))
     database.initialize()
 
 
-if __name__ == '__main__':
-    bot.run(token)
+bot.run(token)

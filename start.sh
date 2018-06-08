@@ -5,7 +5,7 @@ txtgreen=$(tput setaf 2)
 txtcyan=$(tput setaf 6)
 txtpurple=$(tput setaf 5)
 echo "${txtyellow}Checking github for updates${txtcyan}"
-git pull origin master
+git pull http master
 echo "${txtgreen}Git repository is up to date"
 sleep 1
 echo "${txtyellow}Checking pip for updates${txtcyan}"

@@ -2,6 +2,10 @@ import discord
 from discord.ext import commands
 from utils import config
 import sys
+import os
+import colorama
+from termcolor import colored
+import platform
 
 class owner():
     def __init__(self, bot):
@@ -68,12 +72,16 @@ class owner():
     @commands.command(pass_context=True, no_pm=True)
     async def restart(self, ctx):
         if ctx.message.author.id == config.read('owner-id'):
-            await self.bot.send_typing(ctx.message.channel)
-            embed = discord.Embed(title="Restarting...", description="I am restarting!", color=0xffbc77)
-            await self.bot.say(embed=embed)
-            self.bot.logout()
-            await sys.exit(6)
-            os.execv(__file__, sys.argv)
+            try:
+                await self.bot.send_typing(ctx.message.channel)
+                embed = discord.Embed(title="Restarting...", description="I am restarting!", color=0xffbc77)
+                await self.bot.say(embed=embed)
+                await self.bot.logout()
+                print(colored("Kisak-Bot has restarted", 'red'))
+                python = sys.executable
+                os.execl(python, python, *sys.argv)
+            except:
+                pass
         else:
             await self.bot.send_typing(ctx.message.channel)
             embed = discord.Embed(title="Command failed", description="This command may only be executed by the bot owner", color=0xffbc77)
@@ -86,8 +94,7 @@ class owner():
             embed = discord.Embed(title="Shutting-down...", description="I am shutting-down!", color=0xffbc77)
             await self.bot.say(embed=embed)
             self.bot.logout()
-            await sys.exit(0)
-            os.execv(__file__, sys.argv)
+            await exit(1)
         else:
             await self.bot.send_typing(ctx.message.channel)
             embed = discord.Embed(title="Command failed", description="This command may only be executed by the bot owner", color=0xffbc77)

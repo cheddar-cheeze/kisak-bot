@@ -15,4 +15,4 @@ sleep 1
 echo "${txtpurple}Kiask-Bot is starting up${txtrst}"
 sleep 2
 clear
-python3 bot.py
+python3.6 bot.py

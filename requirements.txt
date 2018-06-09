@@ -1,3 +1,4 @@
 colorama
 termcolor
 discord.py[voice]
+PyNaCl

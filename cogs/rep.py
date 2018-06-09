@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 from utils.database import cursor, connection
+from utils.constants import embed_color
 
 
 class rep():
@@ -16,11 +17,11 @@ class rep():
     @commands.cooldown(1, 86400, commands.BucketType.user)
     async def add(self, ctx, member: discord.Member=None):
         if member is None:
-            embed = discord.Embed(title="Command Error!", description="You must mention who to add rep to", color=0xffbc77)
+            embed = discord.Embed(title="Command Error!", description="You must mention who to add rep to", color=embed_color)
             await self.bot.say(embed=embed)
         else:
             if member is ctx.message.author:
-                embed = discord.Embed(title='Command Error!', description="LOL you can't rep your self", color=0xffbc77)
+                embed = discord.Embed(title='Command Error!', description="LOL you can't rep your self", color=embed_color)
                 await self.bot.say(embed=embed)
             else:
                 cursor.execute("SELECT rep_val FROM rep WHERE user_id=?", (member.id,))

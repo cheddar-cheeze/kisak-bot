@@ -2,12 +2,12 @@
 color 06
 echo "Checking github for updates"
 color 09
-git pull http master
+git pull
 color 02
 echo "Git repository is up to date"
 timeout /t 1
 color 09
-pip install -r requirements.txt
+pip install --upgrade -r requirements.txt
 color 02
 echo "Python packages are up to date"
 timeout /t 1

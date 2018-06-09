@@ -4,7 +4,7 @@ from discord.ext import commands
 import os
 from utils import config
 from utils.database import connection, cursor
-
+from utils.constants import embed_color
 
 class misc():
     def __init__(self, bot):
@@ -58,7 +58,7 @@ class misc():
     @commands.command(pass_context=True, no_pm=True)
     async def server(self, ctx):
         await self.bot.send_typing(ctx.message.channel)
-        embed = discord.Embed(title="Server info", description="", color=0xffbc77)
+        embed = discord.Embed(title="Server info", description="", color=embed_color)
         embed.set_thumbnail(url=ctx.message.author.server.icon_url)
         embed.add_field(name="Server name", value=ctx.message.author.server.name)
         embed.add_field(name="Server id", value=ctx.message.author.server.id, inline=True)
@@ -76,7 +76,6 @@ class misc():
         path = os.getcwd()
         await self.bot.delete_message(ctx.message)
         await self.bot.send_file(destination=ctx.message.channel, fp=path + '/assets/unacceptable.png')
-
 
 def setup(bot):
     bot.add_cog(misc(bot))

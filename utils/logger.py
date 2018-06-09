@@ -21,11 +21,6 @@ class logger():
     async def on_message(self, message):
         if message.author == self.bot.user:
             return
-        if message.author.id == '316627148221972491':
-            try:
-                await self.bot.send_message(message.channel, "Marc is a weeb")
-            except:
-                pass
         if not os.path.exists(log_path):
             os.makedirs(log_path)
         if not os.path.exists(log_path + directory + message.server.name):
@@ -40,6 +35,14 @@ class logger():
             log.close()
         except:
             pass
+
+
+    if config.read('discord-debug'):
+        logger = logging.getLogger('discord')
+        logger.setLevel(logging.DEBUG)
+        handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+        handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+        logger.addHandler(handler)
 
 def setup(bot):
     bot.add_cog(logger(bot))

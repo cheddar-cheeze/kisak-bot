@@ -1,0 +1,96 @@
+2018-06-08 20:39:00,782:DEBUG:discord.gateway: Sending "{"op":3,"d":{"game":{"name":"moderating valve repositories","type":0},"afk":false,"since":0.0,"status":"online"}}" to change status
+2018-06-08 20:39:00,782:DEBUG:discord.client: Dispatching event socket_raw_send
+2018-06-08 20:39:02,584:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:02,584:DEBUG:discord.gateway: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 3, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2018-06-09T01:39:02.339000+00:00', 'pinned': False, 'nonce': '454821694310187008', 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'member': {'roles': ['429444732624699393', '429444734424055810', '445769279963660298'], 'nick': None, 'mute': False, 'joined_at': '2018-03-31T00:58:42.621000+00:00', 'deaf': False}, 'id': '454821695304237056', 'embeds': [], 'edited_timestamp': None, 'content': '!account', 'channel_id': '429444395721293827', 'author': {'username': 'cheddar_cheeze', 'id': '317042661070733314', 'discriminator': '7799', 'avatar': 'a718d7b162e5548032fb5e5570d67e11'}, 'attachments': [], 'guild_id': '429444395721293825'}}
+2018-06-08 20:39:02,584:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:02,584:DEBUG:discord.client: Dispatching event message
+2018-06-08 20:39:02,584:DEBUG:discord.client: Dispatching event command
+2018-06-08 20:39:02,786:DEBUG:discord.http: POST https://discordapp.com/api/v6/users/@me/channels with {"recipient_id":"317042661070733314"} has returned 200
+2018-06-08 20:39:02,788:DEBUG:discord.http: POST https://discordapp.com/api/v6/users/@me/channels has received {'last_message_id': '454820444365651969', 'type': 1, 'id': '454820443921055744', 'recipients': [{'username': 'cheddar_cheeze', 'discriminator': '7799', 'id': '317042661070733314', 'avatar': 'a718d7b162e5548032fb5e5570d67e11'}]}
+2018-06-08 20:39:03,024:DEBUG:discord.http: POST https://discordapp.com/api/v6/channels/454820443921055744/messages with {"embed":{"fields":[{"inline":true,"name":"Login","value":"qzef8oix"},{"inline":true,"name":"Password","value":"ykb0IRSXFWVm"}],"color":16759927,"type":"rich","title":"Account Credentials"}} has returned 200
+2018-06-08 20:39:03,033:DEBUG:discord.http: POST https://discordapp.com/api/v6/channels/454820443921055744/messages has received {'nonce': None, 'attachments': [], 'tts': False, 'embeds': [{'color': 16759927, 'fields': [{'inline': True, 'name': 'Login', 'value': 'qzef8oix'}, {'inline': True, 'name': 'Password', 'value': 'ykb0IRSXFWVm'}], 'type': 'rich', 'title': 'Account Credentials'}], 'timestamp': '2018-06-09T01:39:02.963000+00:00', 'mention_everyone': False, 'id': '454821697921744941', 'pinned': False, 'edited_timestamp': None, 'author': {'username': 'kisak-beta', 'discriminator': '6420', 'bot': True, 'id': '454810217738141707', 'avatar': 'c4dc03489f7148eeae43d76d167db07e'}, 'mention_roles': [], 'content': '', 'channel_id': '454820443921055744', 'mentions': [], 'type': 0}
+2018-06-08 20:39:03,033:DEBUG:discord.client: Dispatching event command_completion
+2018-06-08 20:39:03,131:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:03,131:DEBUG:discord.gateway: WebSocket Event: {'t': 'CHANNEL_CREATE', 's': 4, 'op': 0, 'd': {'type': 1, 'recipients': [{'username': 'cheddar_cheeze', 'id': '317042661070733314', 'discriminator': '7799', 'avatar': 'a718d7b162e5548032fb5e5570d67e11'}], 'last_message_id': '454820444365651969', 'id': '454820443921055744'}}
+2018-06-08 20:39:03,132:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:03,132:DEBUG:discord.client: Dispatching event channel_create
+2018-06-08 20:39:03,132:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:03,132:DEBUG:discord.gateway: WebSocket Event: {'t': 'CHANNEL_CREATE', 's': 5, 'op': 0, 'd': {'type': 1, 'recipients': [{'username': 'cheddar_cheeze', 'id': '317042661070733314', 'discriminator': '7799', 'avatar': 'a718d7b162e5548032fb5e5570d67e11'}], 'last_message_id': '454821697921744941', 'id': '454820443921055744'}}
+2018-06-08 20:39:03,132:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:03,133:DEBUG:discord.client: Dispatching event channel_create
+2018-06-08 20:39:03,133:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:03,133:DEBUG:discord.gateway: WebSocket Event: {'t': 'MESSAGE_CREATE', 's': 6, 'op': 0, 'd': {'type': 0, 'tts': False, 'timestamp': '2018-06-09T01:39:02.963000+00:00', 'pinned': False, 'nonce': None, 'mentions': [], 'mention_roles': [], 'mention_everyone': False, 'id': '454821697921744941', 'embeds': [{'type': 'rich', 'title': 'Account Credentials', 'fields': [{'value': 'qzef8oix', 'name': 'Login', 'inline': True}, {'value': 'ykb0IRSXFWVm', 'name': 'Password', 'inline': True}], 'color': 16759927}], 'edited_timestamp': None, 'content': '', 'channel_id': '454820443921055744', 'author': {'username': 'kisak-beta', 'id': '454810217738141707', 'discriminator': '6420', 'bot': True, 'avatar': 'c4dc03489f7148eeae43d76d167db07e'}, 'attachments': []}}
+2018-06-08 20:39:03,133:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:03,133:DEBUG:discord.client: Dispatching event message
+2018-06-08 20:39:03,134:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:03,134:DEBUG:discord.gateway: WebSocket Event: {'t': 'MESSAGE_UPDATE', 's': 7, 'op': 0, 'd': {'id': '454821697921744941', 'embeds': [{'type': 'rich', 'title': 'Account Credentials', 'fields': [{'value': 'qzef8oix', 'name': 'Login', 'inline': True}, {'value': 'ykb0IRSXFWVm', 'name': 'Password', 'inline': True}], 'color': 16759927}], 'channel_id': '454820443921055744'}}
+2018-06-08 20:39:03,134:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:03,134:DEBUG:discord.client: Dispatching event message_edit
+2018-06-08 20:39:11,963:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:11,963:DEBUG:discord.gateway: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 8, 'op': 0, 'd': {'user': {'id': '317042661070733314'}, 'status': 'online', 'roles': ['429444732624699393', '429444734424055810', '445769279963660298'], 'nick': None, 'guild_id': '429444395721293825', 'game': {'type': 0, 'timestamps': {'start': 1528505394000}, 'state': 'Editing accounts.cg.json', 'name': 'JetBrains IDE', 'details': 'Working on kisak-bot', 'assets': {'small_text': 'Using PyCharm Professional version 2018.1.2', 'small_image': '385924580822482957', 'large_text': 'JSON', 'large_image': '386280942748041228'}, 'application_id': '382629176030658561'}}}
+2018-06-08 20:39:11,963:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:11,963:DEBUG:discord.client: Dispatching event member_update
+2018-06-08 20:39:26,428:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:26,428:DEBUG:discord.gateway: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 9, 'op': 0, 'd': {'user': {'id': '317042661070733314'}, 'status': 'online', 'roles': ['429444732624699393', '429444734424055810', '445769279963660298'], 'nick': None, 'guild_id': '429444395721293825', 'game': {'type': 0, 'timestamps': {'start': 1528505394000}, 'state': 'Editing config.json', 'name': 'JetBrains IDE', 'details': 'Working on kisak-bot', 'assets': {'small_text': 'Using PyCharm Professional version 2018.1.2', 'small_image': '385924580822482957', 'large_text': 'JSON', 'large_image': '386280942748041228'}, 'application_id': '382629176030658561'}}}
+2018-06-08 20:39:26,428:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:26,429:DEBUG:discord.client: Dispatching event member_update
+2018-06-08 20:39:36,096:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:36,096:DEBUG:discord.gateway: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 10, 'op': 0, 'd': {'user': {'id': '94874392814690304'}, 'status': 'online', 'roles': ['429444735548260352', '429444734881366017', '444683184559620107', '429444735036555295'], 'nick': None, 'guild_id': '429444395721293825', 'game': None}}
+2018-06-08 20:39:36,096:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:36,096:DEBUG:discord.client: Dispatching event member_update
+2018-06-08 20:39:39,691:DEBUG:discord.gateway: Keeping websocket alive with sequence 10
+2018-06-08 20:39:41,297:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:41,298:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:39:41,298:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:58,966:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:39:58,966:DEBUG:discord.gateway: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 11, 'op': 0, 'd': {'user': {'id': '317042661070733314'}, 'status': 'online', 'roles': ['429444732624699393', '429444734424055810', '445769279963660298'], 'nick': None, 'guild_id': '429444395721293825', 'game': {'type': 0, 'timestamps': {'start': 1528505394000}, 'state': 'Editing account.py', 'name': 'JetBrains IDE', 'details': 'Working on kisak-bot', 'assets': {'small_text': 'Using PyCharm Professional version 2018.1.2', 'small_image': '385924580822482957', 'large_text': 'Python', 'large_image': '386271438543519744'}, 'application_id': '382629176030658561'}}}
+2018-06-08 20:39:58,966:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:39:58,967:DEBUG:discord.client: Dispatching event member_update
+2018-06-08 20:40:20,943:DEBUG:discord.gateway: Keeping websocket alive with sequence 11
+2018-06-08 20:40:21,046:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:40:21,046:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:40:21,047:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:40:45,745:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:40:45,746:DEBUG:discord.gateway: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 12, 'op': 0, 'd': {'user': {'id': '119674592712196098'}, 'status': 'online', 'roles': ['429444732804923392', '429444732624699393', '429444735036555295', '429444735548260352', '429444730695188481'], 'nick': None, 'guild_id': '429444395721293825', 'game': {'type': 0, 'timestamps': {'start': 1528344440664}, 'state': 'Working on nekohook', 'name': 'Atom Editor', 'details': 'Editing hooks.cpp', 'assets': {'small_text': 'Working with Atom', 'small_image': '386325567483412490', 'large_text': 'Editing a C++ file', 'large_image': '380684204326780929'}, 'application_id': '380510159094546443'}}}
+2018-06-08 20:40:45,746:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:40:45,746:DEBUG:discord.client: Dispatching event member_update
+2018-06-08 20:41:02,193:DEBUG:discord.gateway: Keeping websocket alive with sequence 12
+2018-06-08 20:41:02,608:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:41:02,608:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:41:02,608:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:41:15,050:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:41:15,050:DEBUG:discord.gateway: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 13, 'op': 0, 'd': {'user': {'id': '94874392814690304'}, 'status': 'offline', 'roles': ['429444735548260352', '429444734881366017', '444683184559620107', '429444735036555295'], 'nick': None, 'guild_id': '429444395721293825', 'game': None}}
+2018-06-08 20:41:15,050:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:41:15,050:DEBUG:discord.client: Dispatching event member_update
+2018-06-08 20:41:43,445:DEBUG:discord.gateway: Keeping websocket alive with sequence 13
+2018-06-08 20:41:43,561:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:41:43,561:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:41:43,561:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:42:24,696:DEBUG:discord.gateway: Keeping websocket alive with sequence 13
+2018-06-08 20:42:24,826:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:42:24,826:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:42:24,826:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:43:05,947:DEBUG:discord.gateway: Keeping websocket alive with sequence 13
+2018-06-08 20:43:06,088:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:43:06,089:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:43:06,089:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:43:47,198:DEBUG:discord.gateway: Keeping websocket alive with sequence 13
+2018-06-08 20:43:47,326:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:43:47,326:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:43:47,326:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:44:28,448:DEBUG:discord.gateway: Keeping websocket alive with sequence 13
+2018-06-08 20:44:28,554:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:44:28,554:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:44:28,554:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:44:49,577:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:44:49,577:DEBUG:discord.gateway: WebSocket Event: {'t': 'PRESENCE_UPDATE', 's': 14, 'op': 0, 'd': {'user': {'id': '119674592712196098'}, 'status': 'idle', 'roles': ['429444732804923392', '429444732624699393', '429444735036555295', '429444735548260352', '429444730695188481'], 'nick': None, 'guild_id': '429444395721293825', 'game': {'type': 0, 'timestamps': {'start': 1528344440664}, 'state': 'Working on nekohook', 'name': 'Atom Editor', 'details': 'Editing hooks.cpp', 'assets': {'small_text': 'Working with Atom', 'small_image': '386325567483412490', 'large_text': 'Editing a C++ file', 'large_image': '380684204326780929'}, 'application_id': '380510159094546443'}}}
+2018-06-08 20:44:49,578:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:44:49,578:DEBUG:discord.client: Dispatching event member_update
+2018-06-08 20:45:09,700:DEBUG:discord.gateway: Keeping websocket alive with sequence 14
+2018-06-08 20:45:09,976:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:45:09,976:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:45:09,976:DEBUG:discord.client: Dispatching event socket_response
+2018-06-08 20:45:50,951:DEBUG:discord.gateway: Keeping websocket alive with sequence 14
+2018-06-08 20:45:51,485:DEBUG:discord.client: Dispatching event socket_raw_receive
+2018-06-08 20:45:51,486:DEBUG:discord.gateway: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2018-06-08 20:45:51,486:DEBUG:discord.client: Dispatching event socket_response

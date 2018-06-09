@@ -1,5 +1,6 @@
 {
   "token":"token",
   "owner-id":"317042661070733314",
-  "command-prefix":"!"
+  "command-prefix":"!",
+  "discord-debug":true
 }

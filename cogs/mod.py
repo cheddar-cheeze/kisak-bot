@@ -98,7 +98,7 @@ class mod():
 
     @commands.command(pass_context=True, no_pm=True)
     async def masspm(self, ctx, *announcement):
-        ctx.mesage.delete()
+        ctx.message.delete()
         if ctx.message.author == ctx.message.server.owner:
             announcement = ' '.join(announcement)
             if announcement == "":

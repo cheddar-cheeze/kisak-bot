@@ -1,18 +1,14 @@
 import discord
 from discord.ext import commands
-from utils import config
+from cogs import config
 import sys
 import os
-import colorama
 from termcolor import colored
-import platform
-from utils.constants import embed_color
+from cogs.constants import embed_color
 
 class owner():
     def __init__(self, bot):
         self.bot = bot
-
-    __file__ = 'bot.py'
 
     @commands.command(pass_context=True, no_pm=True)
     async def game(self, ctx, *state):

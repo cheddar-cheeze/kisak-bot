@@ -1,14 +1,9 @@
-from utils import config
+from cogs import config, database
 import discord
-import asyncio
 from discord.ext import commands
-from discord.ext.commands import Bot
 from termcolor import colored
 import os
 import platform
-import sys
-from utils import database
-
 
 if platform.system() == 'Windows':
     os.system('cls')
@@ -18,10 +13,9 @@ else:
 token = config.read('token')
 cogs = ['cogs.mod',
         'cogs.misc',
-        'utils.logger',
+        'cogs.logger',
         'cogs.owner',
-        'cogs.rep',
-        'cogs.account'
+        'cogs.rep'
         ]
 
 bot = commands.Bot(command_prefix=config.read('command-prefix'))

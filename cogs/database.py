@@ -18,5 +18,5 @@ def initialize():
     cursor.execute("""CREATE TABLE IF NOT EXISTS 'rep' ('user_id' INT PRIMARY KEY ,'rep_val' INT);""")
     cursor.execute("CREATE TABLE IF NOT EXISTS 'warnings' ('server_id' INT PRIMARY KEY, 'user_id' INT, 'reason' TEXT);""")
     cursor.execute("""CREATE TABLE IF NOT EXISTS 'xp' ('user_id' INT PRIMARY KEY, 'level' INT, 'xp_amt' INT);""")
-    cursor.execute("""CREATE TABLE IF NOT EXISTS  'commands'('sever_id' INT PRIMARY KEY , 'command' TEXT, 'state' TEXT);""")
+    cursor.execute("""CREATE TABLE IF NOT EXISTS  'mspam'('sever_id' INT PRIMARY KEY , 'amt' int, 'punishment' INT, 'state' BIT);""")
     connection.commit()

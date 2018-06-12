@@ -1,9 +1,7 @@
-import discord
-from discord.ext import commands
 import os
 import platform
 import logging
-from utils import config
+from cogs import config
 
 if platform.system() == 'Windows':
     directory = '\\'
@@ -31,7 +29,7 @@ class logger():
         try:
             channel = channel_path + directory + message.channel.name
             log = open(channel + ".txt", "a+")
-            log.write(str(message.timestamp) + "  " + str(message.author) + ":" + message.content + '\n')
+            log.write(str(message.id) + " " + str(message.timestamp) + "  " + str(message.author) + ":" + message.content + "\n")
             log.close()
         except:
             pass

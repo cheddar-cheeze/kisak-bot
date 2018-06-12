@@ -1,7 +1,7 @@
 import json
 import discord
 from discord.ext import commands
-from utils.constants import embed_color
+from cogs.constants import embed_color
 
 
 

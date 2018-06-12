@@ -1,8 +1,6 @@
-import asyncio
 import discord
 from discord.ext import commands
-from utils import config
-from utils.constants import embed_color
+from cogs.constants import embed_color
 
 class mod():
     def __init__(self, bot):
@@ -99,17 +97,17 @@ class mod():
             await self.bot.say(embed=embed)
 
     @commands.command(pass_context=True, no_pm=True)
-    async def masspm(self, ctx, *message):
+    async def masspm(self, ctx, *announcement):
         ctx.mesage.delete()
         if ctx.message.author == ctx.message.server.owner:
-            message = ' '.join(message)
-            if message == "":
+            announcement = ' '.join(announcement)
+            if announcement == "":
                 embed = discord.Embed(title="Command Error!", description="You must provide a message to send", color=embed_color)
                 await self.bot.say(embed=embed)
             else:
                 for user in ctx.message.server.members:
                     try:
-                        embed = discord.Embed(title="Mass pm from " + ctx.message.author.name + "#" + ctx.message.author.discriminator, description=message, color=embed_color)
+                        embed = discord.Embed(title="Mass pm from " + ctx.message.author.name + "#" + ctx.message.author.discriminator, description=announcement, color=embed_color)
                         embed.set_thumbnail(url=ctx.message.author.avatar_url)
                         await self.bot.send_message(user, embed=embed)
                     except:

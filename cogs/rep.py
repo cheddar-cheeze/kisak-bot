@@ -1,8 +1,7 @@
 import discord
 from discord.ext import commands
-import asyncio
-from utils.database import cursor, connection
-from utils.constants import embed_color
+from cogs.database import cursor, connection
+from cogs.constants import embed_color
 
 
 class rep():

@@ -1,10 +1,8 @@
-import asyncio
 import discord
 from discord.ext import commands
 import os
-from utils import config
-from utils.database import connection, cursor
-from utils.constants import embed_color
+from cogs.database import connection, cursor
+from cogs.constants import embed_color
 
 class misc():
     def __init__(self, bot):

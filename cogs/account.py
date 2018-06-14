@@ -15,15 +15,15 @@ class account():
     async def account(self, ctx):
         with open(path, 'r+') as json_file:
             out = json.load(json_file)
+            login = out["array"][1]["login"]
+            passwd = out["array"][1]["password"]
+            del out["array"][1]
             used = out["used"]
             out["used"] = used + 1
             json_file.seek(0)
             json_file.write(json.dumps(out))
             json_file.truncate()
             json_file.close()
-        login = out["array"][1]["login"]
-        passwd = out["array"][1]["password"]
-        del out["array"][1]
         try:
             await self.bot.delete_message(ctx.message)
         except:
@@ -38,11 +38,11 @@ class account():
 
     @commands.command(pass_context=True, no_pm=True)
     async def  geninfo(self, ctx):
-        with open(path, 'r+') as json_file:
+        with open(path, 'r') as json_file:
             out = json.load(json_file)
             used = out["used"]
+            amt = len(out["array"])
             json_file.close()
-        amt = len(out["array"])
         embed = discord.Embed(title="Account generator info", color=embed_color)
         embed.add_field(name='Account Stock', value=str(amt) + " accounts")
         embed.add_field(name='Accounts Used', value=str(used) + " accounts", inline=True)

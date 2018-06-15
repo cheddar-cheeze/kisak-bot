@@ -4,7 +4,7 @@ from discord.ext import commands
 from cogs.constants import embed_color
 
 
-path = '/home/cheddar-cheeze/kisak-bot/accounts.cg.json'
+path = '/home/ubuntu/generator/accounts.cg.json'
 
 class account():
     def __init__(self, bot):
@@ -43,8 +43,8 @@ class account():
             used = out["used"]
             amt = len(out["array"])
             json_file.close()
-        embed = discord.Embed(title="Account generator info", color=embed_color)
-        embed.add_field(name='Account Stock', value=str(amt) + " accounts")
+        embed = discord.Embed(title="Account Generator Info", color=embed_color)
+        embed.add_field(name='Accounts Available', value=str(amt) + " accounts")
         embed.add_field(name='Accounts Used', value=str(used) + " accounts", inline=True)
         await self.bot.say(embed=embed)
 

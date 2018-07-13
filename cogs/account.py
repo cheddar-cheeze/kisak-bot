@@ -45,8 +45,8 @@ class account():
             amt = len(out["array"])
             json_file.close()
         embed = discord.Embed(title="Steam Account Generator Info", color=embed_color)
-        embed.add_field(name='Steam Accounts Available', value=str(amt) + " accounts")
-        embed.add_field(name='Steam Accounts Used', value=str(used) + " accounts", inline=True)
+        embed.add_field(name='Accounts Available', value=str(amt) + " accounts")
+        embed.add_field(name='Accounts Used', value=str(used) + " accounts", inline=True)
         await self.bot.say(embed=embed)
 
 

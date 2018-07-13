@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 import os
-from cogs.database import connection, cursor
-from cogs.constants import embed_color
+from cogs.constants import embed_color, db
+cursor = db.cursor()
 
 class misc():
     def __init__(self, bot):
@@ -27,11 +27,11 @@ class misc():
         cursor.execute("SELECT `value` FROM `rep` WHERE `guild_id`=%s AND `user_id`=%s", (ctx.message.server.id, user.id,))
         data = cursor.fetchone()
         if data is None:
-            cursor.execute("INSERT INTO `rep` (`guild_id`, `user_id`, `value`) VALUES (%s, %s, 1)", (ctx.message.server.id, user.id,))
-            connection.commit()
+            cursor.execute("INSERT INTO `rep` (`guild_id`, `user_id`, `value`) VALUES (%s, %s, 0)", (ctx.message.server.id, user.id,))
+            db.commit()
             rep = str(0)
         else:
-            rep = str(data[0])
+            rep = str(data['value'])
         if user is None:
             await self.bot.send_typing(ctx.message.channel)
             embed = discord.Embed(title=ctx.message.author.name + "'s info", description="", color=0xffbc77)

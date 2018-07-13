@@ -24,10 +24,10 @@ class misc():
     async def info(self, ctx, user: discord.Member=None):
         if user is None:
             user = ctx.message.author
-        cursor.execute("SELECT rep_val FROM rep WHERE user_id=(?)", (user.id,))
+        cursor.execute("SELECT `value` FROM `rep` WHERE `guild_id`=%s AND `user_id`=%s", (ctx.message.server.id, user.id,))
         data = cursor.fetchone()
         if data is None:
-            cursor.execute("INSERT INTO rep(user_id,rep_val) VALUES(?,0)", (user.id,))
+            cursor.execute("INSERT INTO `rep` (`guild_id`, `user_id`, `value`) VALUES (%s, %s, 1)", (ctx.message.server.id, user.id,))
             connection.commit()
             rep = str(0)
         else:
@@ -57,15 +57,14 @@ class misc():
     async def server(self, ctx):
         await self.bot.send_typing(ctx.message.channel)
         embed = discord.Embed(title="Server info", description="", color=embed_color)
-        embed.set_thumbnail(url=ctx.message.author.server.icon_url)
-        embed.add_field(name="Server name", value=ctx.message.author.server.name)
-        embed.add_field(name="Server id", value=ctx.message.author.server.id, inline=True)
-        embed.add_field(name="Owner", value=ctx.message.author.server.owner.name)
-        embed.add_field(name="Server region", value=ctx.message.author.server.region, inline=True)
-        embed.add_field(name="Member count", value=ctx.message.author.server.member_count)
-        embed.add_field(name="Server creation date", value=ctx.message.author.server.created_at, inline=True)
-        embed.add_field(name="Verification level", value=ctx.message.author.server.verification_level)
-        embed.add_field(name="Default channel", value=ctx.message.author.server.default_channel, inline=True)
+        embed.set_thumbnail(url=ctx.message.server.icon_url)
+        embed.add_field(name="Server name", value=ctx.message.server.name)
+        embed.add_field(name="Server id", value=ctx.message.server.id, inline=True)
+        embed.add_field(name="Owner", value=ctx.message.server.owner.name)
+        embed.add_field(name="Server region", value=ctx.message.server.region, inline=True)
+        embed.add_field(name="Member count", value=ctx.message.server.member_count)
+        embed.add_field(name="Server creation date", value=ctx.message.server.created_at, inline=True)
+        embed.add_field(name="Verification level", value=ctx.message.server.verification_level)
         await self.bot.say(embed=embed)
 
 

@@ -16,9 +16,7 @@ cogs = ['cogs.mod',
         'cogs.logger',
         'cogs.owner',
         'cogs.rep',
-        'cogs.music',
-        'cogs.account',
-        'cogs.music',
+        'cogs.account'
         ]
 
 bot = commands.Bot(command_prefix=config.read('command-prefix'))

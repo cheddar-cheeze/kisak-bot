@@ -23,16 +23,16 @@ class rep():
                 embed = discord.Embed(title='Command Error!', description="LOL you can't rep your self", color=embed_color)
                 await self.bot.say(embed=embed)
             else:
-                cursor.execute("SELECT `value` FROM `rep` WHERE `guild_id`=?, `user_id`=?", (ctx.message.server.id, member.id,))
+                cursor.execute("SELECT `value` FROM `rep` WHERE `guild_id`=%s AND `user_id`=%s", (ctx.message.server.id, member.id,))
                 data = cursor.fetchone()
                 if data is None:
-                    cursor.execute("INSERT INTO `rep` (`guild_id`, `user_id`, `value`) VALUES (?, ?, 1)", (ctx.message.server.id, member.id,))
+                    cursor.execute("INSERT INTO `rep` (`guild_id`, `user_id`, `value`) VALUES (%s, %s, 1)", (ctx.message.server.id, member.id,))
                     db.commit()
                     embed = discord.Embed(title="+rep", description=member.mention + " now has 1 rep", color=embed_color)
                     await self.bot.say(embed=embed)
                 else:
                     value = data[0] + 1
-                    cursor.execute("UPDATE `rep` SET `value`=? WHERE `guild_id`=?, `user_id`=?", (value, ctx.message.server.id, member.id,))
+                    cursor.execute("UPDATE `rep` SET `value`=%s WHERE `guild_id`=%s AND`user_id`=%s", (value, ctx.message.server.id, member.id,))
                     db.commit()
                     embed = discord.Embed(title="+rep", description=member.mention + " now has ``" + str(value) + "`` rep", color=embed_color)
                     await self.bot.say(embed=embed)
@@ -49,16 +49,16 @@ class rep():
                 embed = discord.Embed(title='Command Error!', description="LOL you can't rep your self", color=embed_color)
                 await self.bot.say(embed=embed)
             else:
-                cursor.execute("SELECT `value` FROM `rep` WHERE `guild_id`=?, `user_id`=?", (ctx.message.server.id, member.id,))
+                cursor.execute("SELECT `value` FROM `rep` WHERE `guild_id`=%s AND `user_id`=%s", (ctx.message.server.id, member.id,))
                 data = cursor.fetchone()
                 if data is None:
-                    cursor.execute("INSERT INTO `rep` (`guild_id`, `user_id`, `value`) VALUES (?, ?, -1)", (ctx.message.server.id, member.id,))
+                    cursor.execute("INSERT INTO `rep` (`guild_id`, `user_id`, `value`) VALUES (%s, %s, -1)", (ctx.message.server.id, member.id,))
                     db.commit()
                     embed = discord.Embed(title="+rep", description=member.mention + " now has -1 rep", color=embed_color)
                     await self.bot.say(embed=embed)
                 else:
                     value = data[0] - 1
-                    cursor.execute("UPDATE `rep` SET `value`=? WHERE `guild_id`=?, `user_id`=?", (value, ctx.message.server.id, member.id,))
+                    cursor.execute("UPDATE `rep` SET `value`=%s WHERE `guild_id`=%s AND`user_id`=%s", (value, ctx.message.server.id, member.id,))
                     db.commit()
                     embed = discord.Embed(title="+rep", description=member.mention + " now has ``" + str(value) + "`` rep", color=embed_color)
                     await self.bot.say(embed=embed)

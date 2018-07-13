@@ -13,6 +13,7 @@ class account():
     @commands.command(pass_context=True, no_pm=True)
     @commands.cooldown(1, 60, commands.BucketType.user)
     async def account(self, ctx):
+        """sends a direct message with credentials for a steam account"""
         with open(path, 'r+') as json_file:
             out = json.load(json_file)
             login = out["array"][1]["login"]
@@ -28,7 +29,7 @@ class account():
             await self.bot.delete_message(ctx.message)
         except:
             pass
-        embed = discord.Embed(title="Account Credentials", color=embed_color)
+        embed = discord.Embed(title="Steam Account Credentials", color=embed_color)
         embed.add_field(name="Login", value=login)
         embed.add_field(name="Password", value=passwd)
         try:
@@ -37,15 +38,15 @@ class account():
             pass
 
     @commands.command(pass_context=True, no_pm=True)
-    async def  geninfo(self, ctx):
+    async def geninfo(self, ctx):
         with open(path, 'r') as json_file:
             out = json.load(json_file)
             used = out["used"]
             amt = len(out["array"])
             json_file.close()
-        embed = discord.Embed(title="Account Generator Info", color=embed_color)
-        embed.add_field(name='Accounts Available', value=str(amt) + " accounts")
-        embed.add_field(name='Accounts Used', value=str(used) + " accounts", inline=True)
+        embed = discord.Embed(title="Steam Account Generator Info", color=embed_color)
+        embed.add_field(name='Steam Accounts Available', value=str(amt) + " accounts")
+        embed.add_field(name='Steam Accounts Used', value=str(used) + " accounts", inline=True)
         await self.bot.say(embed=embed)
 
 

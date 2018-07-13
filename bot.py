@@ -1,4 +1,4 @@
-from cogs import config, database
+from cogs import config
 import discord
 from discord.ext import commands
 from termcolor import colored
@@ -15,7 +15,10 @@ cogs = ['cogs.mod',
         'cogs.misc',
         'cogs.logger',
         'cogs.owner',
-        'cogs.rep'
+        'cogs.rep',
+        'cogs.music',
+        'cogs.account',
+        'cogs.music',
         ]
 
 bot = commands.Bot(command_prefix=config.read('command-prefix'))
@@ -27,6 +30,5 @@ async def on_ready():
     for cog in cogs:
             bot.load_extension(cog)
     await bot.change_presence(game=discord.Game(name='moderating valve repositories'))
-    database.initialize()
 
 bot.run(token)

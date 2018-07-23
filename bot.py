@@ -2,13 +2,6 @@ from cogs import config
 import discord
 from discord.ext import commands
 from termcolor import colored
-import os
-import platform
-
-if platform.system() == 'Windows':
-    os.system('cls')
-else:
-    os.system('clear')
 
 token = config.read('token')
 cogs = ['cogs.mod',
@@ -16,7 +9,9 @@ cogs = ['cogs.mod',
         'cogs.logger',
         'cogs.owner',
         'cogs.rep',
-        'cogs.account'
+        'cogs.account',
+        'cogs.verification',
+        'cogs.auto_mod'
         ]
 
 bot = commands.Bot(command_prefix=config.read('command-prefix'))

@@ -31,28 +31,52 @@ class auto_mod():
                     online = 1
                 else:
                     online = 0
-                if datay['avatar_req'] <= avatar and datay['online_req'] <= online:
-                    if datay['date_req'] == 0:
-                        await self.bot.add_roles(member, discord.Object(id=datax['role_id']))
-                        embed =discord.Embed(title="Auto-Verification", description="You have met the requirements to be auto-verified in the following server", color=0x008000)
-                        embed.add_field(name="Server Name", value=member.server.name)
-                        embed.add_field(name="Server Id", value=member.server.id, inline=True)
-                        await self.bot.send_message(member, embed=embed)
-                    else:
-                        if member_epoch < int(time.time()) - datay['date_req']:
+                if datay['avatar_req'] <= avatar:
+                    if datay['online_req'] <= online:
+                        if datay['date_req'] == 0:
                             await self.bot.add_roles(member, discord.Object(id=datax['role_id']))
-                            embed = discord.Embed(title="Auto-Verification", description="You have met the requirements to be auto-verified in the following server", color=0x008000)
+                            embed = discord.Embed(title="Auto-Verification",
+                                                  description="You have met the requirements to be auto-verified in the following server",
+                                                  color=0x008000)
                             embed.add_field(name="Server Name", value=member.server.name)
                             embed.add_field(name="Server Id", value=member.server.id, inline=True)
                             await self.bot.send_message(member, embed=embed)
                         else:
+                            if member_epoch < int(time.time()) - datay['date_req']:
+                                await self.bot.add_roles(member, discord.Object(id=datax['role_id']))
+                                embed = discord.Embed(title="Auto-Verification",
+                                                      description="You have met the requirements to be auto-verified in the following server",
+                                                      color=0x008000)
+                                embed.add_field(name="Server Name", value=member.server.name)
+                                embed.add_field(name="Server Id", value=member.server.id, inline=True)
+                                await self.bot.send_message(member, embed=embed)
+                            else:
+                                embed = discord.Embed(title="Auto-Verification",
+                                                      description="You have not met the requirements to be auto-verified in the following server; please wait for an admin to verify you",
+                                                      color=0x990000)
+                                embed.add_field(name="Server Name", value=member.server.name)
+                                embed.add_field(name="Server Id", value=member.server.id, inline=True)
+                                await self.bot.send_message(member, embed=embed)
+                    else:
+                        if datay['date_req'] == 0:
                             await self.bot.add_roles(member, discord.Object(id=datax['role_id']))
-                            embed = discord.Embed(title="Auto-Verification", description="You have not met the requirements to be auto-verified in the following server; please wait for an admin to verify you", color=0x990000)
+                            embed =discord.Embed(title="Auto-Verification", description="You have met the requirements to be auto-verified in the following server", color=0x008000)
                             embed.add_field(name="Server Name", value=member.server.name)
                             embed.add_field(name="Server Id", value=member.server.id, inline=True)
                             await self.bot.send_message(member, embed=embed)
+                        else:
+                            if member_epoch < int(time.time()) - datay['date_req']:
+                                await self.bot.add_roles(member, discord.Object(id=datax['role_id']))
+                                embed = discord.Embed(title="Auto-Verification", description="You have met the requirements to be auto-verified in the following server", color=0x008000)
+                                embed.add_field(name="Server Name", value=member.server.name)
+                                embed.add_field(name="Server Id", value=member.server.id, inline=True)
+                                await self.bot.send_message(member, embed=embed)
+                            else:
+                                embed = discord.Embed(title="Auto-Verification", description="You have not met the requirements to be auto-verified in the following server; please wait for an admin to verify you", color=0x990000)
+                                embed.add_field(name="Server Name", value=member.server.name)
+                                embed.add_field(name="Server Id", value=member.server.id, inline=True)
+                                await self.bot.send_message(member, embed=embed)
                 else:
-                    await self.bot.add_roles(member, discord.Object(id=datax['role_id']))
                     embed = discord.Embed(title="Auto-Verification", description="You have not met the requirements to be auto-verified in the following server; please wait for an admin to verify you", color=0x990000)
                     embed.add_field(name="Server Name", value=member.server.name)
                     embed.add_field(name="Server Id", value=member.server.id, inline=True)

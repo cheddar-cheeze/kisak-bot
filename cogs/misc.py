@@ -2,14 +2,16 @@ import discord
 from discord.ext import commands
 import os
 import traceback
-from cogs.constants import embed_color, db
-cursor = db.cursor()
+from cogs.constants import embed_color
+from cogs.database import Session
 
 class misc():
     def __init__(self, bot):
         self.bot = bot
 
     async def on_server_join(self, server):
+        db = Session().db
+        cursor = db.cursor()
         cursor.execute("SELECT * FROM `welcome_message` WHERE `guild_id`=%s", (server.id,))
         wel = cursor.fetchone()
         if wel is None:
@@ -20,8 +22,11 @@ class misc():
         if lev is None:
             cursor.execute("INSERT INTO `leave_message` (`guild_id`, `channel_id`, `enabled`, `message`) VALUES (%s, NULL, 0, NULL)", (server.id,))
             db.commit()
+        db.close()
 
     async def on_member_join(self, member):
+        db = Session().db
+        cursor = db.cursor()
         cursor.execute("SELECT `message`, `channel_id` FROM `welcome_message` WHERE `guild_id`=%s AND `enabled`=1", (member.server.id,))
         data = cursor.fetchone()
         if data is not None:
@@ -29,8 +34,11 @@ class misc():
             embed = discord.Embed(title="Member joined!", description=message, color=embed_color)
             embed.set_thumbnail(url=member.avatar_url)
             await self.bot.send_message(discord.Object(id=data['channel_id']), embed=embed)
+        db.close()
 
     async def on_member_remove(self, member):
+        db = Session().db
+        cursor = db.cursor()
         cursor.execute("SELECT `message`, `channel_id` FROM `leave_message` WHERE `guild_id`=%s AND `enabled`=1", (member.server.id,))
         data = cursor.fetchone()
         if data is not None:
@@ -38,9 +46,12 @@ class misc():
             embed = discord.Embed(title="Member Left!", description=message, color=embed_color)
             embed.set_thumbnail(url=member.avatar_url)
             await self.bot.send_message(discord.Object(id=data['channel_id']), embed=embed)
+        db.close()
 
     @commands.command(pass_context=True, no_pm=True)
     async def welcome(self, ctx, channel:discord.Channel=None, *message):
+        db = Session().db
+        cursor = db.cursor()
         if ctx.message.author == ctx.message.server.owner.id:
             try:
                 if channel is None:
@@ -67,10 +78,13 @@ class misc():
             except:
                 embed = discord.Embed(title="An Error Occurred!", description=traceback.format_exc(), color=0x990000)
                 await self.bot.say(embed=embed)
+            db.close()
 
 
     @commands.command(pass_context=True, no_pm=True)
     async def leave(self, ctx, channel: discord.Channel=None, *message):
+        db = Session().db
+        cursor = db.cursor()
         if ctx.message.author.id == ctx.message.server.owner.id:
             try:
                 if channel is None:
@@ -97,9 +111,12 @@ class misc():
             except:
                 embed = discord.Embed(title="An Error Occurred!", description=traceback.format_exc(), color=0x990000)
                 await self.bot.say(embed=embed)
+            db.close()
 
     @commands.command(pass_context=True, no_pm=True)
     async def info(self, ctx, user: discord.Member=None):
+        db = Session().db
+        cursor = db.cursor()
         if user is None:
             user = ctx.message.author
         cursor.execute("SELECT `value` FROM `rep` WHERE `guild_id`=%s AND `user_id`=%s", (ctx.message.server.id, user.id,))
@@ -130,6 +147,7 @@ class misc():
             embed.add_field(name="Discord join date", value=user.created_at.date(), inline=True)
             embed.add_field(name="Status", value=user.status)
             await self.bot.say(embed=embed)
+        db.close()
 
     @commands.command(pass_context=True, no_pm=True)
     async def server(self, ctx):

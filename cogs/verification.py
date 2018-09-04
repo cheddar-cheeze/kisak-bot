@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
-from cogs.constants import embed_color, db
+from cogs.constants import embed_color
+from cogs.database import Session
 import traceback
-cursor = db.cursor()
 
 
 class verification():
@@ -11,6 +11,8 @@ class verification():
 
     @commands.command(pass_context=True, no_pm=True)
     async def verification(self, ctx, role=None):
+        db = Session().db
+        cursor = db.cursor()
         try:
             if ctx.message.author.id == ctx.message.server.owner.id:
                 cursor.execute("SELECT `enabled`, `role_id` FROM `verification` WHERE `guild_id`=%s", (ctx.message.server.id,))
@@ -65,9 +67,11 @@ class verification():
         except:
             embed = discord.Embed(title="An Error Occurred!", description=traceback.format_exc(), color=0x990000)
             await self.bot.say(embed=embed)
-
+        db.close()
     @commands.command(pass_context=True, no_pm=True)
     async def verify(self, ctx, member:discord.Member):
+        db = Session().db
+        cursor = db.cursor()
         try:
             if ctx.message.author.server_permissions.manage_roles:
                 cursor.execute("SELECT `enabled`, `role_id` FROM `verification` WHERE `guild_id`=%s", (ctx.message.server.id,))
@@ -85,6 +89,7 @@ class verification():
         except:
             embed = discord.Embed(title="An Error Occurred!", description=traceback.format_exc(), color=0x990000)
             await self.bot.say(embed=embed)
+        db.close()
 
 def setup(bot):
     bot.add_cog(verification(bot))

@@ -1,8 +1,7 @@
 import discord
 from discord.ext import commands
-from cogs.constants import embed_color, db
-
-cursor = db.cursor()
+from cogs.constants import embed_color
+from cogs.database import Session
 
 class rep():
     def __init__(self, bot):
@@ -15,12 +14,14 @@ class rep():
     @rep.command(pass_context=True, no_pm=True)
     @commands.cooldown(1, 86400, commands.BucketType.user)
     async def add(self, ctx, user: discord.Member=None):
+        db = Session().db
+        cursor = db.cursor()
         if user is None:
             embed = discord.Embed(title="Command Error!", description="You must mention who to add rep to", color=embed_color)
             await self.bot.say(embed=embed)
         else:
             if user is ctx.message.author:
-                embed = discord.Embed(title='Command Error!', description="LOL you can't rep your self", color=embed_color)
+                embed = discord.Embed(title='Command Error!', description="This is unacceptable", color=embed_color)
                 await self.bot.say(embed=embed)
             else:
                 cursor.execute("SELECT `value` FROM `rep` WHERE `guild_id`=%s AND `user_id`=%s", (ctx.message.server.id, user.id,))
@@ -36,10 +37,13 @@ class rep():
                     db.commit()
                     embed = discord.Embed(title="+rep", description=user.mention + " now has ``" + str(value) + "`` rep", color=embed_color)
                     await self.bot.say(embed=embed)
+        db.close()
 
     @rep.command(pass_context=True, no_pms=True)
     @commands.cooldown(1, 60, commands.BucketType.user)
     async def subtract(self, ctx, user: discord.Member=None):
+        db = Session().db
+        cursor = db.cursor()
         if user is None:
             embed = discord.Embed(title="Command Error!", description="You must mention who to add rep to", color=embed_color)
             await self.bot.say(embed=embed)
@@ -61,6 +65,7 @@ class rep():
                     db.commit()
                     embed = discord.Embed(title="+rep", description=user.mention + " now has ``" + str(value) + "`` rep", color=embed_color)
                     await self.bot.say(embed=embed)
+        db.close()
 
 
 def setup(bot):

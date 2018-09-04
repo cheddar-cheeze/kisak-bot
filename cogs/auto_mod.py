@@ -3,13 +3,14 @@ from discord.ext import commands
 import time
 import calendar
 import traceback
-from cogs.constants import db
-cursor = db.cursor()
+from  cogs.database import Session
 
 class auto_mod():
     def __init__(self, bot):
         self.bot = bot
     async def on_member_join(self, member):
+        db = Session().db
+        cursor = db.cursor()
         cursor.execute("SELECT `enabled`, `role_id` FROM `verification` WHERE `guild_id`=%s", (member.server.id,))
         datax = cursor.fetchone()
         cursor.execute("SELECT * FROM `auto_verify` WHERE `guild_id`=%s", (member.server.id,))
@@ -81,15 +82,17 @@ class auto_mod():
                     embed.add_field(name="Server Name", value=member.server.name)
                     embed.add_field(name="Server Id", value=member.server.id, inline=True)
                     await self.bot.send_message(member, embed=embed)
-
-    @commands.command(pass_context=True)
+        db.close()
+    @commands.command(pass_context=True, no_pm=True)
     async def autoverify(self, ctx, *args: int):
+        db = Session().db
+        cursor = db.cursor()
         try:
             if ctx.message.author.id == ctx.message.server.owner.id:
                 cursor.execute("SELECT * FROM `auto_verify` WHERE `guild_id`=%s", (ctx.message.server.id,))
                 data = cursor.fetchone()
                 if data is None:
-                    if args.__len__() == 0:
+                    if args is None:
                         embed = discord.Embed(title="Argument Error", description="Please specify what requirements a member needs to meet to be auto-verified", color=0x990000)
                         await self.bot.say(embed=embed)
                     else:
@@ -101,7 +104,7 @@ class auto_mod():
                         embed.add_field(name='Online Required', value=args[2], inline=False)
                         await self.bot.say(embed=embed)
                 else:
-                    if args.__len__() == 0:
+                    if args is None:
                         if data['enabled'] == 0:
                             cursor.execute("UPDATE `auto_verify` SET `enabled`=1 WHERE `guild_id`=%s", (ctx.message.server.id,))
                             embed = discord.Embed(title="Auto-Verify Enabled", description='', color=0x008000)
@@ -130,7 +133,7 @@ class auto_mod():
         except:
             embed = discord.Embed(title="Command Error", description=traceback.format_exc(), color=0x990000)
             await self.bot.say(embed=embed)
-
+        db.close()
 
 def setup(bot):
     bot.add_cog(auto_mod(bot))

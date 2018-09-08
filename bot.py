@@ -24,4 +24,4 @@ async def on_ready():
             bot.load_extension(cog)
     await bot.change_presence(game=discord.Game(name='moderating valve repositories'))
 
-bot.run(token)
+bot.run(token, bot=False)

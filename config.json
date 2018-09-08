@@ -1,6 +1,7 @@
 {
-  "token":"token",
+  "token":"NDg3NzkzMzYwMTg3MjkzNzI3.DnS06g.so2bHmFOwcCfNCQuYi4JSWHHShg",
   "owner-id":"317042661070733314",
   "command-prefix":"!",
-  "discord-debug":true
+  "discord-debug":true,
+  "weather-key":""
 }
